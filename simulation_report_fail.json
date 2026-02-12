@@ -1,0 +1,377 @@
+{
+  "timestamp": "2026-02-11T16:55:13.294646Z",
+  "pr_context": {
+    "repo": "Team7/e-commerce-app",
+    "pr_number": 42,
+    "branch": "feature/PROJ-42-login-page",
+    "pr_title": "[PROJ-42] Implement login page with OAuth2",
+    "pr_description": "## Description\nImplémentation de la page de connexion avec support OAuth2 (Google, GitHub).\n\n## Jira\nTicket: PROJ-42\n\n## Figma\nMaquette: https://www.figma.com/file/ABC123/LoginPage\n\n## Changes\n- LoginController avec endpoints /login et /oauth/callback\n- LoginForm component React\n- Tests unitaires et d'intégration\n- Mise à jour du diagramme UML\n",
+    "pr_author": "malek",
+    "pr_author_email": "malek@team7.dev",
+    "jira_key": "PROJ-42",
+    "figma_link": "https://www.figma.com/file/ABC123/LoginPage",
+    "uml_files": [
+      "docs/diagrams/auth.puml"
+    ]
+  },
+  "verdict": {
+    "verdict": "FAIL",
+    "confidence_score": 0,
+    "justification": [
+      "Analyse code : 4 fichier(s), 4 classe(s), 2 endpoint(s).",
+      "⚠️ Aucun test détecté.",
+      "UML : 2 écart(s) ❌",
+      "Figma : écarts détectés ❌",
+      "AC [AC-3] FAIL : L'utilisateur peut se connecter via OAuth2 (GitHub) ❌",
+      "AC [AC-4] FAIL : Les erreurs de connexion affichent un message clair ❌",
+      "❌ ÉCHEC : UML incohérent.",
+      "❌ ÉCHEC : Figma non conforme.",
+      "❌ ÉCHEC : AC Jira non satisfaits."
+    ],
+    "must_fix": [
+      {
+        "description": "Aucun test ajouté/modifié.",
+        "location": "(tests/)",
+        "suggestion": "Ajouter des tests unitaires pour les changements.",
+        "severity": "MEDIUM"
+      },
+      {
+        "description": "Classe AuthService présente dans le code mais absente du diagramme UML.",
+        "location": "docs/diagrams/auth.puml",
+        "suggestion": "Ajouter AuthService au diagramme de classes.",
+        "severity": "HIGH"
+      },
+      {
+        "description": "Méthode handleOAuthCallback() ajoutée dans LoginController mais absente du diagramme.",
+        "location": "docs/diagrams/auth.puml",
+        "suggestion": "Mettre à jour le diagramme avec la nouvelle méthode.",
+        "severity": "MEDIUM"
+      },
+      {
+        "description": "Figma frame 'OAuthButtons' non implémenté.",
+        "location": "Figma: F2",
+        "suggestion": "Implémenter le composant 'OAuthButtons'.",
+        "severity": "HIGH"
+      },
+      {
+        "description": "AC [AC-3] non satisfait : L'utilisateur peut se connecter via OAuth2 (GitHub)",
+        "location": "Jira PROJ-42",
+        "suggestion": "Implémenter ce critère d'acceptation.",
+        "severity": "CRITICAL"
+      },
+      {
+        "description": "AC [AC-4] non satisfait : Les erreurs de connexion affichent un message clair",
+        "location": "Jira PROJ-42",
+        "suggestion": "Implémenter ce critère d'acceptation.",
+        "severity": "CRITICAL"
+      }
+    ]
+  },
+  "validation_table": [
+    {
+      "category": "Jira AC",
+      "item": "[AC-1] L'utilisateur peut se connecter avec email et mot ",
+      "status": "PASS",
+      "evidence": "LoginController.login() implémenté."
+    },
+    {
+      "category": "Jira AC",
+      "item": "[AC-2] L'utilisateur peut se connecter via OAuth2 (Google",
+      "status": "PASS",
+      "evidence": "OAuth2 Google implémenté."
+    },
+    {
+      "category": "Jira AC",
+      "item": "[AC-3] L'utilisateur peut se connecter via OAuth2 (GitHub",
+      "status": "FAIL",
+      "evidence": "Callback GitHub non trouvé dans le code."
+    },
+    {
+      "category": "Jira AC",
+      "item": "[AC-4] Les erreurs de connexion affichent un message clai",
+      "status": "FAIL",
+      "evidence": "Aucun état d'erreur détecté dans LoginForm."
+    },
+    {
+      "category": "Jira DoD",
+      "item": "[DoD-1] Tests unitaires écrits",
+      "status": "FAIL",
+      "evidence": "Aucun fichier de test ajouté."
+    },
+    {
+      "category": "Jira DoD",
+      "item": "[DoD-2] Diagramme UML mis à jour",
+      "status": "PASS",
+      "evidence": "auth.puml modifié."
+    },
+    {
+      "category": "UML",
+      "item": "AuthService: Classe AuthService présente dans le code",
+      "status": "FAIL",
+      "evidence": "Ajouter AuthService au diagramme de classes."
+    },
+    {
+      "category": "UML",
+      "item": "handleOAuthCallback: Méthode handleOAuthCallback() ajoutée da",
+      "status": "FAIL",
+      "evidence": "Mettre à jour le diagramme avec la nouvelle méthode."
+    },
+    {
+      "category": "Figma",
+      "item": "LoginForm",
+      "status": "OK",
+      "evidence": "LoginForm.tsx contient les composants requis."
+    },
+    {
+      "category": "Figma",
+      "item": "OAuthButtons",
+      "status": "FAIL",
+      "evidence": "Composant GitHubButton non trouvé dans le code. Seul GoogleB"
+    }
+  ],
+  "code_analysis": {
+    "summary": "PR avec 4 fichiers modifiés, 2 endpoints REST, AUCUN test ajouté.",
+    "files_modified": [
+      {
+        "filename": "src/controllers/LoginController.java",
+        "status": "added",
+        "additions": 120,
+        "deletions": 0,
+        "patch": "",
+        "language": "java"
+      },
+      {
+        "filename": "src/services/AuthService.java",
+        "status": "added",
+        "additions": 85,
+        "deletions": 0,
+        "patch": "",
+        "language": "java"
+      },
+      {
+        "filename": "src/models/User.java",
+        "status": "modified",
+        "additions": 15,
+        "deletions": 3,
+        "patch": "",
+        "language": "java"
+      },
+      {
+        "filename": "frontend/src/components/LoginForm.tsx",
+        "status": "added",
+        "additions": 95,
+        "deletions": 0,
+        "patch": "",
+        "language": "typescript"
+      }
+    ],
+    "features_detected": [
+      "OAuth2 login",
+      "JWT token generation"
+    ],
+    "endpoints": [
+      "POST /api/login",
+      "GET /api/oauth/callback"
+    ],
+    "classes_touched": [
+      "LoginController",
+      "AuthService",
+      "User",
+      "LoginForm"
+    ],
+    "methods_touched": [
+      "login()",
+      "handleOAuthCallback()"
+    ],
+    "migrations_detected": [],
+    "tests_added": [],
+    "tests_modified": [],
+    "test_coverage_info": "Aucun test détecté.",
+    "sensitive_points": [
+      "Gestion des tokens JWT",
+      "Stockage des credentials OAuth — NON SÉCURISÉ"
+    ],
+    "raw_diff_stats": {
+      "total_files": 4,
+      "additions": 315,
+      "deletions": 3
+    }
+  },
+  "uml_check": {
+    "diagrams_found": [
+      {
+        "filepath": "docs/diagrams/auth.puml",
+        "diagram_type": "class",
+        "entities": [
+          {
+            "name": "LoginController",
+            "entity_type": "class",
+            "attributes": [],
+            "methods": [
+              "login()"
+            ]
+          },
+          {
+            "name": "UserService",
+            "entity_type": "class",
+            "attributes": [],
+            "methods": [
+              "getUser()"
+            ]
+          }
+        ],
+        "relations": [],
+        "raw_content": ""
+      }
+    ],
+    "mismatches": [
+      {
+        "diagram_file": "docs/diagrams/auth.puml",
+        "element": "AuthService",
+        "issue": "Classe AuthService présente dans le code mais absente du diagramme UML.",
+        "severity": "HIGH",
+        "suggestion": "Ajouter AuthService au diagramme de classes."
+      },
+      {
+        "diagram_file": "docs/diagrams/auth.puml",
+        "element": "handleOAuthCallback",
+        "issue": "Méthode handleOAuthCallback() ajoutée dans LoginController mais absente du diagramme.",
+        "severity": "MEDIUM",
+        "suggestion": "Mettre à jour le diagramme avec la nouvelle méthode."
+      }
+    ],
+    "status": "MISMATCH",
+    "summary": "2 écarts détectés entre le diagramme UML et le code."
+  },
+  "figma_check": {
+    "figma_link": "https://www.figma.com/file/ABC123/LoginPage",
+    "pages_analyzed": [
+      "Login"
+    ],
+    "requirements": [
+      {
+        "frame_id": "F1",
+        "frame_name": "LoginForm",
+        "page_name": "Login",
+        "description": "Formulaire de connexion",
+        "components": [
+          "EmailInput",
+          "PasswordInput",
+          "SubmitButton"
+        ],
+        "texts": [],
+        "states": []
+      },
+      {
+        "frame_id": "F2",
+        "frame_name": "OAuthButtons",
+        "page_name": "Login",
+        "description": "Boutons OAuth",
+        "components": [
+          "GoogleButton",
+          "GitHubButton"
+        ],
+        "texts": [],
+        "states": []
+      }
+    ],
+    "mappings": [
+      {
+        "requirement": {
+          "frame_id": "F1",
+          "frame_name": "LoginForm",
+          "page_name": "Login",
+          "description": "Formulaire",
+          "components": [
+            "EmailInput",
+            "PasswordInput",
+            "SubmitButton"
+          ],
+          "texts": [],
+          "states": []
+        },
+        "implementation_status": "OK",
+        "evidence": "LoginForm.tsx contient les composants requis.",
+        "gap": ""
+      },
+      {
+        "requirement": {
+          "frame_id": "F2",
+          "frame_name": "OAuthButtons",
+          "page_name": "Login",
+          "description": "Boutons OAuth",
+          "components": [
+            "GoogleButton",
+            "GitHubButton"
+          ],
+          "texts": [],
+          "states": []
+        },
+        "implementation_status": "FAIL",
+        "evidence": "",
+        "gap": "Composant GitHubButton non trouvé dans le code. Seul GoogleButton est implémenté."
+      }
+    ],
+    "status": "MISMATCH",
+    "summary": "1 composant Figma manquant : GitHubButton."
+  },
+  "jira_validation": {
+    "jira_key": "PROJ-42",
+    "jira_summary": "Implémenter la page de connexion avec OAuth2",
+    "jira_description": "En tant qu'utilisateur, je veux pouvoir me connecter via email/mot de passe ou OAuth2.",
+    "jira_status": "In Review",
+    "acceptance_criteria": [
+      {
+        "id": "AC-1",
+        "description": "L'utilisateur peut se connecter avec email et mot de passe",
+        "status": "PASS",
+        "evidence": "LoginController.login() implémenté.",
+        "notes": ""
+      },
+      {
+        "id": "AC-2",
+        "description": "L'utilisateur peut se connecter via OAuth2 (Google)",
+        "status": "PASS",
+        "evidence": "OAuth2 Google implémenté.",
+        "notes": ""
+      },
+      {
+        "id": "AC-3",
+        "description": "L'utilisateur peut se connecter via OAuth2 (GitHub)",
+        "status": "FAIL",
+        "evidence": "Callback GitHub non trouvé dans le code.",
+        "notes": ""
+      },
+      {
+        "id": "AC-4",
+        "description": "Les erreurs de connexion affichent un message clair",
+        "status": "FAIL",
+        "evidence": "Aucun état d'erreur détecté dans LoginForm.",
+        "notes": ""
+      }
+    ],
+    "definition_of_done": [
+      {
+        "id": "DoD-1",
+        "description": "Tests unitaires écrits",
+        "status": "FAIL",
+        "evidence": "Aucun fichier de test ajouté.",
+        "notes": ""
+      },
+      {
+        "id": "DoD-2",
+        "description": "Diagramme UML mis à jour",
+        "status": "PASS",
+        "evidence": "auth.puml modifié.",
+        "notes": ""
+      }
+    ],
+    "status": "FAIL",
+    "summary": "2 AC en échec + 1 DoD en échec.",
+    "recommended_verdict": "FAIL"
+  },
+  "scrum_master_email_draft": "",
+  "dev_email_draft": "",
+  "jira_transition_payload": {},
+  "jira_comment": ""
+}

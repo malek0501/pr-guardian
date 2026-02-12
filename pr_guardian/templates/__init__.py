@@ -1,0 +1,1 @@
+"""Templates — PR-Guardian."""

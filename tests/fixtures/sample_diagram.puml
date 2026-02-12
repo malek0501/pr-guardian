@@ -1,0 +1,67 @@
+@startuml
+title Diagramme de classes — Authentification
+
+class AuthService {
+    -userRepository: UserRepository
+    +authenticate(email: String, password: String): User
+    +register(email: String, password: String): User
+    -validateToken(token: String): Boolean
+    -hashPassword(password: String): String
+}
+
+class User {
+    -id: Long
+    -email: String
+    -passwordHash: String
+    -createdAt: DateTime
+    +checkPassword(password: String): Boolean
+    +generateToken(): String
+}
+
+interface UserRepository {
+    +findByEmail(email: String): User
+    +save(user: User): User
+    +existsByEmail(email: String): Boolean
+}
+
+class LoginController {
+    -authService: AuthService
+    +login(request: LoginRequest): TokenResponse
+}
+
+class SignupController {
+    -authService: AuthService
+    +signup(request: SignupRequest): UserResponse
+}
+
+class LoginRequest {
+    +email: String
+    +password: String
+}
+
+class SignupRequest {
+    +email: String
+    +password: String
+    +confirmPassword: String
+}
+
+class TokenResponse {
+    +token: String
+    +expiresIn: Long
+}
+
+class UserResponse {
+    +id: Long
+    +email: String
+}
+
+AuthService --> UserRepository : uses
+AuthService --> User : creates
+LoginController --> AuthService : delegates
+SignupController --> AuthService : delegates
+LoginController ..> LoginRequest : receives
+SignupController ..> SignupRequest : receives
+LoginController ..> TokenResponse : returns
+SignupController ..> UserResponse : returns
+
+@enduml

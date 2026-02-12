@@ -1,0 +1,26 @@
+@@ -0,0 +1,25 @@
++from fastapi import APIRouter, HTTPException
++from .service import AuthService
++
++router = APIRouter()
++auth_service = AuthService()
++
++@router.post("/api/auth/login")
++async def login(request: LoginRequest):
++    user = auth_service.authenticate(request.email, request.password)
++    if not user:
++        raise HTTPException(status_code=401, detail="Invalid credentials")
++    return {"token": user.token}
++
++@router.post("/api/auth/signup")
++async def signup(request: SignupRequest):
++    user = auth_service.register(request.email, request.password)
++    return {"user_id": user.id}
++
++class LoginRequest:
++    email: str
++    password: str
++
++class SignupRequest:
++    email: str
++    password: str
